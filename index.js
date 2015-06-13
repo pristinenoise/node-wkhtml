@@ -7,7 +7,7 @@ function buildArgs(options, defaults) {
       if (value === true) {
         args.push('--' + name)
       } else if (value !== false) {
-        args.push('--' + name + '=' + value);
+        args.push('--' + name + ' ' + value);
       }
     }
     args.push('-')
