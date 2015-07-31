@@ -38,7 +38,11 @@ var defaults = module.exports.defaults = function(defaults) {
       }
 
       var args = buildArgs(opts || {}, defaults);
-      return spawn(executable, [input || '-'].concat(args), env || defaultEnv);
+      // fix pipe issue
+      //console.log(['-c', [ executable, [input || '-'].concat(args).join(' '), '| cat'].join(' ')].join(' '))
+      return spawn('/bin/sh', ['-c', [ executable, [input || '-'].concat(args).join(' '), '| cat'].join(' ')], env || defaultEnv)
+      //return spawn(executable, [input || '-'].concat(args), env || defaultEnv);
+      //return spawn(executable, [input || '-'].concat(args), env || defaultEnv);
     }
   }
 }
