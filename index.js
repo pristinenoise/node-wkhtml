@@ -42,7 +42,7 @@ var defaults = module.exports.defaults = function(defaults) {
       //console.log(['-c', [ executable, [input || '-'].concat(args).join(' '), '| cat'].join(' ')].join(' '))
       //return spawn('/bin/sh', ['-c', [ executable, [input || '-'].concat(args).join(' '), '| cat'].join(' ')], env || defaultEnv)
       //return spawn(executable, [input || '-'].concat(args), env || defaultEnv);
-      return spawn(executable, [input || '-'].concat(args), {stdio: 'inherit', env: env || defaultEnv});
+      return spawn(executable, [input || '-'].concat(args), {stdio: 'pipe', env: env || defaultEnv});
     }
   }
 }
