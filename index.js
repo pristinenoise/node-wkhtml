@@ -15,7 +15,6 @@ function buildArgs(options, defaults) {
     return args;
 }
 
-
 var defaults = module.exports.defaults = function(defaults) {
 
   var defaultEnv = defaults.env || process.env,
@@ -23,7 +22,7 @@ var defaults = module.exports.defaults = function(defaults) {
       png = defaults.png || {};
 
   return {
-    spawn: function(format, input, opts, env) {
+    spawn: function(format, input, output, opts, env) {
       var executable,
           defaults;
 
@@ -41,8 +40,8 @@ var defaults = module.exports.defaults = function(defaults) {
       // fix pipe issue
       //console.log(['-c', [ executable, [input || '-'].concat(args).join(' '), '| cat'].join(' ')].join(' '))
       //return spawn('/bin/sh', ['-c', [ executable, [input || '-'].concat(args).join(' '), '| cat'].join(' ')], env || defaultEnv)
-      //return spawn(executable, [input || '-'].concat(args), env || defaultEnv);
-      return spawn(executable, [input || '-'].concat(args), {stdio: 'pipe', env: env || defaultEnv});
+      return spawn(executable, [input || '-'].concat(args).concat(output || '-'), env || defaultEnv);
+      //return spawn(executable, [input || '-'].concat(args), {stdio: 'pipe', env: env || defaultEnv});
     }
   }
 }
